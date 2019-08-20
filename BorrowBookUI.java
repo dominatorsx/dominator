@@ -9,7 +9,7 @@ public class BorrowBookUI {
 	private Scanner input;
 	private UI_STATE StaTe;
 
-	
+	//BorrowBook
 	public BorrowBookUI(BorrowBookControl control) {
 		this.CONTROL = control;
 		input = new Scanner(System.in);
