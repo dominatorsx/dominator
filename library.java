@@ -187,13 +187,14 @@ public class Library implements Serializable {
 		return true;
 	}
 
-	
-	public int Loans_Remaining_For_Member(member member) {		
+	//method name was replaced with a meaningful name.
+	public int getLoansRemainingForMember(member member) {		
 		return loanLimit - member.Number_Of_Current_Loans();
 	}
 
-	
-	public loan ISSUE_LAON(book book, member member) {
+	//method name was replaced with a meaningful name.
+	//changed the data type
+	public Loan issueLoan(book book, member member) {
 		Date dueDate = Calendar.INSTANCE().Due_Date(loanPeriod);
 		loan loan = new loan(NextLID(), book, member, dueDate);
 		member.Take_Out_Loan(loan);
@@ -203,16 +204,18 @@ public class Library implements Serializable {
 		return loan;
 	}
 	
-	
-	public loan LOAN_BY_BOOK_ID(int bookId) {
+	//method name was replaced with a meaningful name.
+	//changed the data type
+	public Loan getLoanByBookId(int bookId) {
 		if (CURRENT_LOANS.containsKey(bookId)) {
 			return CURRENT_LOANS.get(bookId);
 		}
 		return null;
 	}
 
-	
-	public double CalculateOverDueFine(loan loan) {
+	//method name was replaced with a meaningful name.
+	//changed the data type
+	public double calculateOverdueFine(loan loan) {
 		if (loan.OVer_Due()) {
 			long daysOverDue = Calendar.INSTANCE().Get_Days_Difference(loan.Get_Due_Date());
 			double fine = daysOverDue * finePerDay;
@@ -221,8 +224,9 @@ public class Library implements Serializable {
 		return 0.0;		
 	}
 
-
-	public void Discharge_loan(loan currentLoan, boolean isDamaged) {
+    //method name was replaced with a meaningful name.
+	//made changes to the argument data types
+	public void dischargeLoan(Loan currentLoan, boolean isDamaged) {
 		member member = currentLoan.Member();
 		book book  = currentLoan.Book();
 		
@@ -247,7 +251,7 @@ public class Library implements Serializable {
 	}
 
 
-	public void Repair_BOOK(book currentBook) {
+	public void repairBook(book currentBook) {
 		if (DAMAGED_BOOKS.containsKey(currentBook.ID())) {
 			currentBook.Repair();
 			DAMAGED_BOOKS.remove(currentBook.ID());
