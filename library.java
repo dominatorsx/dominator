@@ -13,42 +13,51 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@SuppressWarnings("serial")
-public class library implements Serializable {
-	
-	private static final String libraryFile = "library.obj";
-	private static final int loanLimit = 2;
-	private static final int loanPeriod = 2;
-	private static final double finePerDay = 1.0;
-	private static final double maxFinesOwed = 1.0;
-	private static final double damageFee = 2.0;
-	
-	private static library SeLf;
-	private int BOOK_ID;
-	private int MEMBER_ID;
-	private int LOAN_ID;
-	private Date LOAN_DATE;
-	
-	private Map<Integer, book> CATALOG;
-	private Map<Integer, member> MEMBERS;
-	private Map<Integer, loan> LOANS;
-	private Map<Integer, loan> CURRENT_LOANS;
-	private Map<Integer, book> DAMAGED_BOOKS;
-	
+//Authored by Lahiru
 
-	private library() {
-		CATALOG = new HashMap<>();
-		MEMBERS = new HashMap<>();
-		LOANS = new HashMap<>();
-		CURRENT_LOANS = new HashMap<>();
-		DAMAGED_BOOKS = new HashMap<>();
-		BOOK_ID = 1;
-		MEMBER_ID = 1;		
-		LOAN_ID = 1;		
+
+@SuppressWarnings("serial")
+
+//class name was started with Uppercase letter,changed to lowercase.
+public class Library implements Serializable {
+	
+	//changed all constant variable names to uppercase
+	private static final String LIBRARY_FILE = "library.obj";
+	private static final int LOAN_LIMIT = 2;
+	private static final int LOAN_PERIOD = 2;
+	private static final double FINES_PER_DAY = 1.0;
+	private static final double MAX_FINES_OWED = 1.0;
+	private static final double DAMAGE_FEE = 2.0;
+	
+	//changed all variable names to lowercase
+	private static Library Self;
+	private int bookId;
+	private int memberID;
+	private int loanId;
+	private Date loanDate;
+	
+	private Map<Integer, book> catalog;
+	private Map<Integer, member> members;
+	private Map<Integer, loan> loans;
+	private Map<Integer, loan> currentLoans;
+	private Map<Integer, book> damageBooks;
+	
+    //Renamed the constructor
+	private Library() {
+		//renamed the variable names
+		catalog = new HashMap<>();
+		members = new HashMap<>();
+		loans = new HashMap<>();
+		currentLoans = new HashMap<>();
+		damageBooks = new HashMap<>();
+		bookId = 1;
+		memberID= 1;		
+		loadId = 1;		
 	}
 
-	
-	public static synchronized library INSTANCE() {		
+	//Data type was started with lowercase letter,changed to Uppercase.
+	//method name changed to lowercase
+	public static synchronized Library instance() {		
 		if (SeLf == null) {
 			Path PATH = Paths.get(libraryFile);			
 			if (Files.exists(PATH)) {	
@@ -67,8 +76,8 @@ public class library implements Serializable {
 		return SeLf;
 	}
 
-	
-	public static synchronized void SAVE() {
+	// changed method name to lowercase
+	public static synchronized void save() {
 		if (SeLf != null) {
 			SeLf.LOAN_DATE = Calendar.INSTANCE().Date();
 			try (ObjectOutputStream LoF = new ObjectOutputStream(new FileOutputStream(libraryFile));) {
@@ -82,81 +91,89 @@ public class library implements Serializable {
 		}
 	}
 
-	
-	public int BookID() {
-		return BOOK_ID;
+	//method name was replaced with a meaningful name.
+	public int getBookId() {
+		return bookId;
 	}
 	
-	
-	public int MemberID() {
-		return MEMBER_ID;
+	//method name was replaced with a meaningful name.
+	public int getMemberId() {
+		return memberId;
 	}
 	
-	
-	private int NextBID() {
-		return BOOK_ID++;
-	}
-
-	
-	private int NextMID() {
-		return MEMBER_ID++;
+	//method name was replaced with a meaningful name.
+	private int getNextBookId() {
+		return bookId++;
 	}
 
-	
-	private int NextLID() {
-		return LOAN_ID++;
+	//method name was replaced with a meaningful name.
+	private int getNextMemberId() {
+		return memberId++;
 	}
 
-	
-	public List<member> MEMBERS() {		
+	//method name was replaced with a meaningful name.
+	private int getNextLoanId() {
+		return loanId++;
+	}
+
+	//first letter of data type Member was in lowercase letter,changed it to uppercase letter
+	//method name was replaced with a meaningful name.
+	public List<Member> getMembers() {		
 		return new ArrayList<member>(MEMBERS.values()); 
 	}
 
-
-	public List<book> BOOKS() {		
+    
+	//first letter of data type Book was in lowercase letter,changed it to uppercase letter
+	//method name was replaced with a meaningful name.
+	public List<Book> getBooks() {		
 		return new ArrayList<book>(CATALOG.values()); 
 	}
 
-
-	public List<loan> CurrentLoans() {
+    //first letter of data type Loan was in lowercase letter,changed it to uppercase letter
+	//method name was replaced with a meaningful name.
+	public List<Loan> getCurrentLoans() {
 		return new ArrayList<loan>(CURRENT_LOANS.values());
 	}
 
-
-	public member Add_mem(String lastName, String firstName, String email, int phoneNo) {		
+    //first letter of data type Member was in lowercase letter,changed it to uppercase letter
+	//method name was replaced with a meaningful name.
+	public Member addMember(String lastName, String firstName, String email, int phoneNo) {		
 		member member = new member(lastName, firstName, email, phoneNo, NextMID());
 		MEMBERS.put(member.GeT_ID(), member);		
 		return member;
 	}
 
-	
-	public book Add_book(String a, String t, String c) {		
+	//first letter of data type Book was in lowercase letter,changed it to uppercase letter
+	//method name was replaced with a meaningful name.
+	public Book addBook(String a, String t, String c) {		
 		book b = new book(a, t, c, NextBID());
 		CATALOG.put(b.ID(), b);		
 		return b;
 	}
 
-	
-	public member MEMBER(int memberId) {
+	//first letter of data type Member was in lowercase letter,changed it to uppercase letter
+	//method name was replaced with a meaningful name.
+	public Member getMember(int memberId) {
 		if (MEMBERS.containsKey(memberId)) 
 			return MEMBERS.get(memberId);
 		return null;
 	}
 
-	
-	public book Book(int bookId) {
+	//first letter of data type Member was in lowercase letter,changed it to uppercase letter
+	//method name was replaced with a meaningful name.
+	public Book getBook(int bookId) {
 		if (CATALOG.containsKey(bookId)) 
 			return CATALOG.get(bookId);		
 		return null;
 	}
 
-	
-	public int LOAN_LIMIT() {
+	//method name was replaced with a meaningful name.
+	public int getLoanLimit() {
 		return loanLimit;
 	}
 
-	
-	public boolean MEMBER_CAN_BORROW(member member) {		
+	//method name was replaced with a meaningful name.
+	public boolean memberCanBorrow(member member) {		
 		if (member.Number_Of_Current_Loans() == loanLimit ) 
 			return false;
 				
@@ -170,13 +187,14 @@ public class library implements Serializable {
 		return true;
 	}
 
-	
-	public int Loans_Remaining_For_Member(member member) {		
+	//method name was replaced with a meaningful name.
+	public int getLoansRemainingForMember(member member) {		
 		return loanLimit - member.Number_Of_Current_Loans();
 	}
 
-	
-	public loan ISSUE_LAON(book book, member member) {
+	//method name was replaced with a meaningful name.
+	//changed the data type
+	public Loan issueLoan(book book, member member) {
 		Date dueDate = Calendar.INSTANCE().Due_Date(loanPeriod);
 		loan loan = new loan(NextLID(), book, member, dueDate);
 		member.Take_Out_Loan(loan);
@@ -186,16 +204,18 @@ public class library implements Serializable {
 		return loan;
 	}
 	
-	
-	public loan LOAN_BY_BOOK_ID(int bookId) {
+	//method name was replaced with a meaningful name.
+	//changed the data type
+	public Loan getLoanByBookId(int bookId) {
 		if (CURRENT_LOANS.containsKey(bookId)) {
 			return CURRENT_LOANS.get(bookId);
 		}
 		return null;
 	}
 
-	
-	public double CalculateOverDueFine(loan loan) {
+	//method name was replaced with a meaningful name.
+	//changed the data type
+	public double calculateOverdueFine(loan loan) {
 		if (loan.OVer_Due()) {
 			long daysOverDue = Calendar.INSTANCE().Get_Days_Difference(loan.Get_Due_Date());
 			double fine = daysOverDue * finePerDay;
@@ -204,8 +224,9 @@ public class library implements Serializable {
 		return 0.0;		
 	}
 
-
-	public void Discharge_loan(loan currentLoan, boolean isDamaged) {
+    //method name was replaced with a meaningful name.
+	//made changes to the argument data types
+	public void dischargeLoan(Loan currentLoan, boolean isDamaged) {
 		member member = currentLoan.Member();
 		book book  = currentLoan.Book();
 		
@@ -229,8 +250,9 @@ public class library implements Serializable {
 		}		
 	}
 
-
-	public void Repair_BOOK(book currentBook) {
+    //method name was replaced with a meaningful name.
+	//made changes to the argument data types
+	public void repairBook(book currentBook) {
 		if (DAMAGED_BOOKS.containsKey(currentBook.ID())) {
 			currentBook.Repair();
 			DAMAGED_BOOKS.remove(currentBook.ID());
