@@ -250,7 +250,8 @@ public class Library implements Serializable {
 		}		
 	}
 
-
+    //method name was replaced with a meaningful name.
+	//made changes to the argument data types
 	public void repairBook(book currentBook) {
 		if (DAMAGED_BOOKS.containsKey(currentBook.ID())) {
 			currentBook.Repair();
