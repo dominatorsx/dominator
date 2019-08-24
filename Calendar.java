@@ -1,5 +1,6 @@
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
+//Authored by Tharindu
 
 public class Calendar {
 	//change the variable
