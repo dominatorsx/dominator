@@ -6,6 +6,7 @@ import java.util.Map;
 
 
 //Authored by Lahiru
+//review by sulthan
 
 @SuppressWarnings("serial")
 //class name was started with Uppercase letter,changed to lowercase.
@@ -95,7 +96,7 @@ public class Member implements Serializable {
 	}
 	
 	 //made changes to method name
-	public double payFine(double AmOuNt) {
+	public double payFine(double AmOuNt) { //try changing AmOuNT -- SUL
 		if (AmOuNt < 0) {
 			throw new RuntimeException("Member.payFine: amount must be positive");
 		}
@@ -111,7 +112,7 @@ public class Member implements Serializable {
 	}
 
      //made changes to method name
-	public void dischargeLoan(loan LoAn) {
+	public void dischargeLoan(loan LoAn) { //try chnaging LoAn -- SUL
 		if (LNS.containsKey(LoAn.ID())) {
 			LNS.remove(LoAn.ID());
 		}
