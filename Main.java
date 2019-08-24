@@ -2,16 +2,20 @@ import java.text.SimpleDateFormat;
 import java.util.Scanner;
 
 //author by Sulthan ---SUL
+//Reviewed by Lahiru
+
 public class Main {
 	
-	private static Scanner IN;
-	private static library LIB;
-	private static String MENU;
-	private static Calendar CAL;
-	private static SimpleDateFormat SDF;
 	
+	//made changes to variable names and formatted data types
+	private static Scanner input;
+	private static Library library;
+	private static String menu;
+	private static Calendar calender;
+	private static SimpleDateFormat date;
 	
-	private static String Get_menu() {
+	//change method name to meaningful one
+	private static String getMenu() {
 		StringBuilder sb = new StringBuilder();
 		
 		sb.append("\nLibrary Main Menu\n\n")
@@ -39,12 +43,14 @@ public class Main {
 
 	public static void main(String[] args) {		
 		try {			
-			IN = new Scanner(System.in);
-			LIB = library.INSTANCE();
-			CAL = Calendar.INSTANCE();
-			SDF = new SimpleDateFormat("dd/MM/yyyy");
-	
-			for (member m : LIB.MEMBERS()) {
+			//replaced variable names
+			input = new Scanner(System.in);
+			library = library.INSTANCE();
+			calendar = Calendar.INSTANCE();
+			date = new SimpleDateFormat("dd/MM/yyyy");
+	        
+	        //replaced method name accordingly to match with library class
+			for (Member m : library.getMembers()) {
 				output(m);
 			}
 			output(" ");
@@ -126,8 +132,8 @@ public class Main {
 		new PayFineUI(new PayFineControl()).RuN();		
 	}
 
-
-	private static void CURRENT_LOANS() {
+    //formatted the method name
+	private static void currentLoans() {
 		output("");
 		for (loan loan : LIB.CurrentLoans()) {
 			output(loan + "\n");
@@ -135,8 +141,8 @@ public class Main {
 	}
 
 
-
-	private static void BOOKS() {
+    //formatted the method name
+	private static void getBooks() {
 		output("");
 		for (book book : LIB.BOOKS()) {
 			output(book + "\n");
@@ -144,8 +150,8 @@ public class Main {
 	}
 
 
-
-	private static void MEMBERS() {
+    //formatted the method name
+	private static void getMembers() {
 		output("");
 		for (member member : LIB.MEMBERS()) {
 			output(member + "\n");
@@ -153,23 +159,23 @@ public class Main {
 	}
 
 
-
-	private static void BORROW_BOOK() {
+     //formatted the method name
+	private static void borrowBook() {
 		new BorrowBookUI(new BorrowBookControl()).run();		
 	}
 
-
-	private static void RETURN_BOOK() {
+     //formatted the method name
+	private static void returnBook() {
 		new ReturnBookUI(new ReturnBookControl()).RuN();		
 	}
 
-
-	private static void FIX_BOOKS() {
+     //formatted the method name
+	private static void fixBook() {
 		new FixBookUI(new FixBookControl()).RuN();		
 	}
 
-
-	private static void INCREMENT_DATE() {
+     //formatted the method name
+	private static void incrementDate() {
 		try {
 			int days = Integer.valueOf(input("Enter number of days: ")).intValue();
 			CAL.incrementDate(days);
@@ -181,8 +187,8 @@ public class Main {
 		}
 	}
 
-
-	private static void ADD_BOOK() {
+     //formatted the method name
+	private static void addBook() {
 		
 		String A = input("Enter author: ");
 		String T  = input("Enter title: ");
@@ -192,14 +198,15 @@ public class Main {
 		
 	}
 
-	
-	private static void ADD_MEMBER() {
+	//formatted the method name
+	private static void addMember() {
 		try {
-			String LN = input("Enter last name: ");
-			String FN  = input("Enter first name: ");
-			String EM = input("Enter email: ");
-			int PN = Integer.valueOf(input("Enter phone number: ")).intValue();
-			member M = LIB.Add_mem(LN, FN, EM, PN);
+			//replaced the variable names
+			String lastName = input("Enter last name: ");
+			String firstName  = input("Enter first name: ");
+			String email = input("Enter email: ");
+			int phoneNo = Integer.valueOf(input("Enter phone number: ")).intValue();
+			Member member = LIB.Add_mem(LN, FN, EM, PN);
 			output("\n" + M + "\n");
 			
 		} catch (NumberFormatException e) {
@@ -208,15 +215,16 @@ public class Main {
 		
 	}
 
-
-	private static String input(String prompt) {
+    //replaced method name with meaningful one
+	private static String getInput(String prompt) {
 		System.out.print(prompt);
-		return IN.nextLine();
+		//replaced the variable name
+		return input.nextLine();
 	}
 	
 	
-	
-	private static void output(Object object) {
+	//replaced method name with meaningful one
+	private static void getOutput(Object object) {
 		System.out.println(object);
 	}
 }
