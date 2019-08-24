@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 //Authored by Lahiru
+//reviewed by Tharindu
 
 
 @SuppressWarnings("serial")
@@ -30,7 +31,7 @@ public class Library implements Serializable {
 	private static final double DAMAGE_FEE = 2.0;
 	
 	//changed all variable names to lowercase
-	private static Library Self;
+	private static Library self;
 	private int bookId;
 	private int memberID;
 	private int loanId;
@@ -57,31 +58,33 @@ public class Library implements Serializable {
 
 	//Data type was started with lowercase letter,changed to Uppercase.
 	//method name changed to lowercase
-	public static synchronized Library instance() {		
-		if (SeLf == null) {
+	public static synchronized Library instance() {	
+		//change the variable name	
+		if (self == null) {
 			Path PATH = Paths.get(libraryFile);			
 			if (Files.exists(PATH)) {	
 				try (ObjectInputStream LiF = new ObjectInputStream(new FileInputStream(libraryFile));) {
 			    
-					SeLf = (library) LiF.readObject();
-					Calendar.INSTANCE().Set_dATE(SeLf.LOAN_DATE);
+					self = (library) LiF.readObject();
+					Calendar.INSTANCE().Set_dATE(self.LOAN_DATE);
 					LiF.close();
 				}
 				catch (Exception e) {
 					throw new RuntimeException(e);
 				}
 			}
-			else SeLf = new library();
+			else self = new library();
 		}
-		return SeLf;
+		return self;
 	}
 
 	// changed method name to lowercase
 	public static synchronized void save() {
-		if (SeLf != null) {
-			SeLf.LOAN_DATE = Calendar.INSTANCE().Date();
+		//change the variable name
+		if (self != null) {
+			self.LOAN_DATE = Calendar.INSTANCE().Date();
 			try (ObjectOutputStream LoF = new ObjectOutputStream(new FileOutputStream(libraryFile));) {
-				LoF.writeObject(SeLf);
+				LoF.writeObject(self);
 				LoF.flush();
 				LoF.close();	
 			}
