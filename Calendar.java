@@ -1,6 +1,9 @@
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 //Authored by Tharindu
+//review by Sulhan
+
+//jjfff
 
 public class Calendar {
 	//change the variable
@@ -56,7 +59,7 @@ public class Calendar {
 		}	
 	}
 
-	public synchronized Date Due_Date(int loanPeriod) {
+	public synchronized Date Due_Date(int loanPeriod) { //check Due_Date --SUL
 		//change the variable
 		Date now = Date();
 		//change the variable
