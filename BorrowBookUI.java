@@ -2,6 +2,9 @@ import java.util.Scanner;
 //Authored by Tharindu
 
 
+//Reviewed by Lahiru
+
+
 public class BorrowBookUI {
 	//change class name
 	public static enum UiState { INITIALISED, READY, RESTRICTED, SCANNING, IDENTIFIED, FINALISING, COMPLETED, CANCELLED };
