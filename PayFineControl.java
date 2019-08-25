@@ -1,4 +1,5 @@
 //Author - Dilshan Amarasinghe 11673207
+//Reviewed by Lahiru
 
 import PayFineControl.ControlState;
 
@@ -44,13 +45,13 @@ public class PayFineControl {
 	}
 	
 	
-	public void Cancel() {
+	public void cancel() {  // changed "Cancel" to cancel
 		ui.setState(PayFineUI.UI_STATE.CANCELLED);
 		state = ControlState.CANCELLED;
 	}
 
 
-	public double PayFine(double amount) { 				//changed "PaY_FiNe" to "PayFine"
+	public double payFine(double amount) { 				//changed "PaY_FiNe" to "PayFine"   //changed PayFine to payFine()
 		if (!state.equals(ControlState.PAYING)) { 	
 			throw new RuntimeException("PayFineControl: cannot call payFine except in PAYING state");
 		}	

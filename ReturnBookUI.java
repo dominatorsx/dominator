@@ -1,4 +1,5 @@
 //Author - Dilshan Amarasinghe 11673207
+//Reviewed by Lahiru
 
 import java.util.Scanner;
 
@@ -66,13 +67,13 @@ public class ReturnBookUI {
 	}
 
 	
-	private String input(String prompt) {
+	private String getInput(String prompt) { //changed "input()" to getInput()
 		System.out.print(prompt);
 		return input.nextLine();
 	}	
 		
 		
-	private void output(Object object) {
+	private void getOutput(Object object) {  //changed "output()" to getOutput()
 		System.out.println(object);
 	}
 	
