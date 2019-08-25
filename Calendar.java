@@ -1,13 +1,15 @@
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
+//Authored by Tharindu
+//review by Sulhan
+
+//jjfff
 
 public class Calendar {
 	//change the variable
 	private static Calendar self;
 	//change the variable
 	private static java.util.Calendar calendar;
-	
-	
 	private calendar() {
 		//change the variable
 		calendar = java.util.Calendar.getInstance();
@@ -56,6 +58,9 @@ public class Calendar {
 	}
 
 	public synchronized Date Due_Date(int loanPeriod) {
+
+	public synchronized Date Due_Date(int loanPeriod) { //check Due_Date --SUL
+
 		//change the variable
 		Date now = Date();
 		//change the variable

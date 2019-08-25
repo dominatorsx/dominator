@@ -1,42 +1,44 @@
+//Author - Dilshan Amarasinghe 11673207
+
 import java.util.Scanner;
 
 
 public class ReturnBookUI {
 
-	public static enum UI_STATE { INITIALISED, READY, INSPECTING, COMPLETED };
+	public static enum UIState { INITIALISED, READY, INSPECTING, COMPLETED }; 	//changed "UI_STATE"
 
-	private ReturnBookControl CoNtRoL;
+	private ReturnBookControl control;						//changed "CoNtRoL"
 	private Scanner input;
-	private UI_STATE StATe;
+	private UIState state;								//changed "UI_STATE"
 
 	
 	public ReturnBookUI(ReturnBookControl control) {
-		this.CoNtRoL = control;
+		this.control = control;							//changed "CoNtRol"
 		input = new Scanner(System.in);
-		StATe = UI_STATE.INITIALISED;
-		control.Set_UI(this);
+		state = UIState.INITIALISED;						//changed "UI_STATE"
+		control.setUI(this);
 	}
 
 
-	public void RuN() {		
+	public void run() {								//changed "RuN"
 		output("Return Book Use Case UI\n");
 		
 		while (true) {
 			
-			switch (StATe) {
+			switch (state) {  						//changed "StATe"
 			
 			case INITIALISED:
 				break;
 				
 			case READY:
-				String Book_STR = input("Scan Book (<enter> completes): ");
-				if (Book_STR.length() == 0) {
-					CoNtRoL.Scanning_Complete();
+				String bookTitle = input("Scan Book (<enter> completes): ");	//"Book_STR" changed into "bookTitle"
+				if (bookTitle.length() == 0) {
+					control.scanningComplete();   //changed "CoNtRoL" and "Scanning_Complete"
 				}
 				else {
 					try {
-						int Book_Id = Integer.valueOf(Book_STR).intValue();
-						CoNtRoL.Book_scanned(Book_Id);
+						int bookId = Integer.valueOf(bookTitle).intValue();	//changed "Book_Id"
+						control.bookScanned(bookTitle);
 					}
 					catch (NumberFormatException e) {
 						output("Invalid bookId");
@@ -45,12 +47,12 @@ public class ReturnBookUI {
 				break;				
 				
 			case INSPECTING:
-				String ans = input("Is book damaged? (Y/N): ");
-				boolean Is_Damaged = false;
-				if (ans.toUpperCase().equals("Y")) {					
-					Is_Damaged = true;
+				String answer = input("Is book damaged? (Y/N): ");   	//changed "ans"
+				boolean isDamaged = false;				//changed "Is_Damaged"
+				if (answer.toUpperCase().equals("Y")) {					
+					isDamaged = true;
 				}
-				CoNtRoL.Discharge_loan(Is_Damaged);
+				control.dischargeLoan(isDamaged);			//changed "CoNtRoL" and "Discharge_loan" and "Is_Damaged"
 			
 			case COMPLETED:
 				output("Return processing complete");
@@ -58,7 +60,7 @@ public class ReturnBookUI {
 			
 			default:
 				output("Unhandled state");
-				throw new RuntimeException("ReturnBookUI : unhandled state :" + StATe);			
+				throw new RuntimeException("ReturnBookUI : unhandled state :" + state);			
 			}
 		}
 	}
@@ -79,8 +81,8 @@ public class ReturnBookUI {
 		output(object);
 	}
 	
-	public void Set_State(UI_STATE state) {
-		this.StATe = state;
+	public void setState(UIState state) {						//changed "Set_State" and "StATe"
+		this.state = state;
 	}
 
 	
