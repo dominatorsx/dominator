@@ -1,29 +1,34 @@
 public class FixBookControl {
 	
 	//author by Sulthan ---SUL
-	private FixBookUI UI;
+	//reviewed by Tharindu
+	
+	//change the varibale -- tharindu
+	private FixBookUi ui;
 	private enum ControlState { INITIALISED, READY, FIXING }; //CONTROL_STATE to ControlState -- SUL
 	private ControlState state; //StAtE to state -- SUL
 	
-	private library LIB;
-	private book curBook; //removed underscore and capatilized first letter -- SUL
+	//change the variable name and data type -- tharindu
+	private library library;
+	// change the data type -- tharindu
+	private Book curBook; //removed underscore and capatilized first letter -- SUL
 
 
 	public FixBookControl() 
 	{
-		this.LIB = LIB.INSTANCE();
+		this.library = library.INSTANCE();
 		state = ControlState.INITIALISED; //StAtE to state -- SUL
 	}
 	
 	
-	public void set_Ui(FixBookUI ui) //Set to set -- SUL
+	public void setui(FixBookUi ui) //Set to set -- SUL, remove the underscope -- tharindu
 	{
 		if (!state.equals(ControlState.INITIALISED)) //StAtE to state -- SUL
 		{
-			throw new RuntimeException("FixBookControl: cannot call setUI except in INITIALISED state");
+			throw new RuntimeException("FixBookControl: cannot call setui except in INITIALISED state");
 		}	
-		this.UI = ui;
-		ui.set_State(FixBookUI.UI_STATE.READY); //Set to set -- SUL
+		this.ui = ui;
+		ui.setState(FixBookUi.ui_STATE.READY); //Set to set -- SUL, remove the underscope -- tharindu
 		state = ControlState.READY;		//StAtE to state -- SUL
 	}
 
@@ -34,20 +39,20 @@ public class FixBookControl {
 		{
 			throw new RuntimeException("FixBookControl: cannot call bookScanned except in READY state");
 		}	
-		curBook = LIB.Book(bookId); //removed underscore and capatilized first letter -- SUL
+		curBook = library.Book(bookId); //removed underscore and capatilized first letter -- SUL
 		
 		if (curBook == null) //removed underscore and capatilized first letter -- SUL
 		{
-			UI.display("Invalid bookId");
+			ui.display("Invalid bookId");
 			return;
 		}
 		if (!curBook.IS_Damaged()) //removed underscore and capatilized first letter -- SUL
 		{
-			UI.display("Book has not been damaged");
+			ui.display("Book has not been damaged");
 			return;
 		}
-		UI.display(Cur_Book.toString());
-		UI.Set_State(FixBookUI.UI_STATE.FIXING);
+		ui.display(Cur_Book.toString());
+		ui.Set_State(FixBookUi.ui_STATE.FIXING);
 		state = ControlState.FIXING;	//StAtE to state -- SUL	
 	}
 
@@ -60,10 +65,10 @@ public class FixBookControl {
 		}	
 		if (MUST_fix) 
 		{
-			LIB.Repair_BOOK(curBook); //removed underscore and capatilized first letter -- SUL
+			library.Repair_BOOK(curBook); //removed underscore and capatilized first letter -- SUL
 		}
 		curBook = null; //removed underscore and capatilized first letter -- SUL
-		UI.Set_State(FixBookUI.UI_STATE.READY);
+		ui.setState(FixBookUi.ui_STATE.READY);//change the method name -- tharindu
 		state = ControlState.READY;	//StAtE to state -- SUL	
 	}
 
@@ -74,6 +79,6 @@ public class FixBookControl {
 		{
 			throw new RuntimeException("FixBookControl: cannot call scanningComplete except in READY state");
 		}	
-		UI.Set_State(FixBookUI.UI_STATE.COMPLETED);		
+		ui.setState(FixBookUi.ui_STATE.COMPLETED);//change the method name 		
 	}
 }
