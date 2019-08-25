@@ -4,6 +4,7 @@ import java.util.Date;
 
 
 //Authored by Lahiru
+//Reviewed by Dilshan
 
 @SuppressWarnings("serial")
 public class Loan implements Serializable {
