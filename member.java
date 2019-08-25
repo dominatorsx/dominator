@@ -4,27 +4,32 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@SuppressWarnings("serial")
-public class member implements Serializable {
 
-	private String LN;
-	private String FN;
-	private String EM;
-	private int PN;
-	private int ID;
-	private double FINES;
+//Authored by Lahiru
+//review by sulthan
+
+@SuppressWarnings("serial")
+//class name was started with Uppercase letter,changed to lowercase.
+public class Member implements Serializable {
+    //replaced with meaningful variable names
+	private String lastName;
+	private String fullName;
+	private String email;
+	private int phoneNo;
+	private int memberID;
+	private double fines;
 	
-	private Map<Integer, loan> LNS;
+	private Map<Integer, loan> loans;
 
 	
 	public member(String lastName, String firstName, String email, int phoneNo, int id) {
-		this.LN = lastName;
-		this.FN = firstName;
-		this.EM = email;
-		this.PN = phoneNo;
-		this.ID = id;
+		this.lastName= lastName;
+		this.firstName= firstName;
+		this.email= email;
+		this.phoneNo = phoneNo;
+		this.memberID = id;
 		
-		this.LNS = new HashMap<>();
+		this.loans = new HashMap<>();
 	}
 
 	
@@ -44,28 +49,28 @@ public class member implements Serializable {
 		return sb.toString();
 	}
 
-	
-	public int GeT_ID() {
-		return ID;
+	//method name was replaced with a meaningful name.
+	public int getMemberId() {
+		return memberID;
 	}
 
-	
-	public List<loan> GeT_LoAnS() {
+	//removed underscore and method name was replaced with a meaningful name.
+	public List<loan> getLoans() {
 		return new ArrayList<loan>(LNS.values());
 	}
 
-	
-	public int Number_Of_Current_Loans() {
+	//method name was replaced with a meaningful name.
+	public int getNumberOfCurrentLoans() {
 		return LNS.size();
 	}
 
-	
-	public double Fines_OwEd() {
+	//method name was replaced with a meaningful name.
+	public double getFinesOwed() {
 		return FINES;
 	}
 
-	
-	public void Take_Out_Loan(loan loan) {
+	//method name was replaced with a meaningful name.
+	public void takeOutLoan(loan loan) {
 		if (!LNS.containsKey(loan.ID())) {
 			LNS.put(loan.ID(), loan);
 		}
@@ -74,22 +79,24 @@ public class member implements Serializable {
 		}		
 	}
 
-	
-	public String Get_LastName() {
-		return LN;
+	//method name was replaced with a meaningful name.
+	public String getLastName() {
+		return lastName;
 	}
 
 	
-	public String Get_FirstName() {
-		return FN;
+	//method name was replaced with a meaningful name.
+	public String getFirstName() {
+		return firstName;
 	}
 
-
-	public void Add_Fine(double fine) {
+    //made changes to method name
+	public void addFine(double fine) {
 		FINES += fine;
 	}
 	
-	public double Pay_Fine(double AmOuNt) {
+	 //made changes to method name
+	public double payFine(double AmOuNt) { //try changing AmOuNT -- SUL
 		if (AmOuNt < 0) {
 			throw new RuntimeException("Member.payFine: amount must be positive");
 		}
@@ -104,8 +111,8 @@ public class member implements Serializable {
 		return change;
 	}
 
-
-	public void dIsChArGeLoAn(loan LoAn) {
+     //made changes to method name
+	public void dischargeLoan(loan LoAn) { //try chnaging LoAn -- SUL
 		if (LNS.containsKey(LoAn.ID())) {
 			LNS.remove(LoAn.ID());
 		}

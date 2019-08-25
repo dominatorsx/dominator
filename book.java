@@ -1,29 +1,35 @@
 import java.io.Serializable;
 
-
+//Authored by Lahiru
+//review by Sulthan
 @SuppressWarnings("serial")
-public class book implements Serializable {
+//class name was started with Uppercase letter,changed to lowercase.
+public class Book implements Serializable {
 	
-	private String TITLE;
-	private String AUTHOR;
-	private String CALLNO;
-	private int ID;
+	//Variable names were in Uppercase letters,It's been changed to lowercase
+	private String title; 
+	private String author;
+	private String callNo;
+	//change varibale name to bookId
+	private int bookId;
 	
 	private enum STATE { AVAILABLE, ON_LOAN, DAMAGED, RESERVED };
-	private STATE State;
+	//variable name's been changed to lowercase
+	private STATE state;
 	
-	
-	public book(String author, String title, String callNo, int id) {
-		this.AUTHOR = author;
-		this.TITLE = title;
-		this.CALLNO = callNo;
-		this.ID = id;
-		this.State = STATE.AVAILABLE;
+	//Constructor name changed
+	public Book(String author, String title, String callNo, int bookId) {
+		
+		this.author = author;
+		this.title = title;
+		this.callNo = callNo;
+		this.bookId = bookId;
+		this.state = STATE.AVAILABLE;
 	}
 	
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
-		sb.append("Book: ").append(ID).append("\n")
+		   sb.append("Book: ").append(ID).append("\n")
 		  .append("  Title:  ").append(TITLE).append("\n")
 		  .append("  Author: ").append(AUTHOR).append("\n")
 		  .append("  CallNo: ").append(CALLNO).append("\n")
@@ -31,33 +37,33 @@ public class book implements Serializable {
 		
 		return sb.toString();
 	}
-
-	public Integer ID() {
-		return ID;
+     
+    //method name was replaced with a meaningful name.
+	public Integer getBookID() {
+		return bookId;
+	}
+    //method name was replaced with a meaningful name.
+	public String getTitle() {
+		return title;
 	}
 
-	public String TITLE() {
-		return TITLE;
+    //method name was replaced with a meaningful name.
+	public boolean isAvailable() {
+		return state == STATE.AVAILABLE;
 	}
 
-
-	
-	public boolean AVAILABLE() {
-		return State == STATE.AVAILABLE;
+	//method name was replaced with a meaningful name.
+	public boolean booksOnloan() {
+		return state == STATE.ON_LOAN;
 	}
 
-	
-	public boolean On_loan() {
-		return State == STATE.ON_LOAN;
+	//method name was replaced with a meaningful name.
+	public boolean IsBookdamaged() {
+		return state == STATE.DAMAGED;
 	}
 
-	
-	public boolean IS_Damaged() {
-		return State == STATE.DAMAGED;
-	}
-
-	
-	public void Borrow() {
+	//method name was replaced with a meaningful name.///////////////////
+	public void borrowBook() {
 		if (State.equals(STATE.AVAILABLE)) {
 			State = STATE.ON_LOAN;
 		}
@@ -67,8 +73,8 @@ public class book implements Serializable {
 		
 	}
 
-
-	public void Return(boolean DAMAGED) {
+    //method name was replaced with a meaningful name.///////////////////
+	public void returnBook(boolean DAMAGED) {
 		if (State.equals(STATE.ON_LOAN)) {
 			if (DAMAGED) {
 				State = STATE.DAMAGED;
@@ -82,8 +88,8 @@ public class book implements Serializable {
 		}		
 	}
 
-	
-	public void Repair() {
+	 //method name was replaced with a meaningful name.///////////////////
+	public void repairBook() {
 		if (State.equals(STATE.DAMAGED)) {
 			State = STATE.AVAILABLE;
 		}

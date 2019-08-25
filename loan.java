@@ -2,23 +2,27 @@ import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+
+//Authored by Lahiru
+
 @SuppressWarnings("serial")
-public class loan implements Serializable {
+public class Loan implements Serializable {
 	
 	public static enum LOAN_STATE { CURRENT, OVER_DUE, DISCHARGED };
 	
-	private int ID;
-	private book B;
-	private member M;
-	private Date D;
+	//replaced with meaningful variable names and done few formattings
+	private int loanId;
+	private Book book;
+	private Member member;
+	private Date dueDate;
 	private LOAN_STATE state;
 
-	
-	public loan(int loanId, book book, member member, Date dueDate) {
-		this.ID = loanId;
-		this.B = book;
-		this.M = member;
-		this.D = dueDate;
+	////made changes to the method argument data types
+	public loan(int loanId, Book book, Member member, Date dueDate) {
+		this.loanId = loanId;
+		this.book = book;
+		this.member = member;
+		this.dueDate = dueDate;
 		this.state = LOAN_STATE.CURRENT;
 	}
 
@@ -30,19 +34,19 @@ public class loan implements Serializable {
 		}
 	}
 
-	
-	public boolean OVer_Due() {
+	////method name was replaced with a meaningful name.
+	public boolean checkOverdue() {
 		return state == LOAN_STATE.OVER_DUE;
 	}
 
-	
-	public Integer ID() {
-		return ID;
+	//method name was replaced with a meaningful name.
+	public Integer getLoanId() {
+		return loanId;
 	}
 
-
-	public Date Get_Due_Date() {
-		return D;
+    //formatted method name
+	public Date getDueDate() {
+		return dueDate;
 	}
 	
 	
@@ -60,18 +64,20 @@ public class loan implements Serializable {
 		return sb.toString();
 	}
 
-
-	public member Member() {
-		return M;
+    //method name was replaced with a meaningful name.
+    //formatted return data type
+	public Member getMember() {
+		return member;
 	}
 
-
-	public book Book() {
-		return B;
+    //method name was replaced with a meaningful name.
+    //formatted return data type
+	public Book getBook() {
+		return book;
 	}
 
-
-	public void DiScHaRgE() {
+    //method name was replaced with a meaningful name.
+	public void isDischarged() {
 		state = LOAN_STATE.DISCHARGED;		
 	}
 
